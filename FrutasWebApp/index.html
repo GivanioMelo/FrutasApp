@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="carregarFrutas()">
+    <div>
+        <h1>Fruta Aleatória</h1>
+        <button onclick="frutaAleatoria()">Consultar Fruta Aleatória</button>
+        <p id="frutaAleatoria"></p>
+    </div>
+    <div>
+        <h1>Fruta pelo Id</h1>
+        <input type="number" name="frutaId" id="frutaId">
+        <button onclick="frutaPeloId()">Consultar Fruta pelo Id</button>
+        <p id="frutaPeloId"></p>
+    </div>
+    <div>
+        <h1>Adicionar nova fruta</h1>
+        <input type="text" id="inputFruta" placeholder="Digite o nome da fruta">
+        <button onclick="adicionarFruta()">Adicionar Fruta</button>
+        <p id="resposta"></p>
+    </div>
+</body>
+</html>

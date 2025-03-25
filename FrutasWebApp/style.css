@@ -1,0 +1,38 @@
+body
+{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+div
+{
+    display: inline-block;
+    margin: 10px;
+    box-shadow: 5px 5px gray;
+    border: black solid 2px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+p{
+    background-color: #AAAAAA;
+    margin: 2px;
+    padding:5px;
+    border-style: none;
+}
+
+p.error
+{
+    background-color: lightcoral;
+    color: darkred;
+    border-color: darkred;
+    border-style: solid;
+}
+
+p.success
+{
+    background-color: lightgreen;
+    color:darkgreen;
+    border-color: darkgreen;
+    border-style: solid;
+}
