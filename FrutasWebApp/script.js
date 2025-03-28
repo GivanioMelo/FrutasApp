@@ -66,3 +66,63 @@ function adicionarFruta()
         resposta.classList = "success";
     });
 }
+
+function atualizarFruta()
+{
+    let inputId = document.getElementById("atualizarFrutaId");
+    let inputNovoNome = document.getElementById("frutaNovoNome");
+    let id = Number(inputId.value.trim());
+    let novaFruta = inputNovoNome.value.trim();
+
+    resposta = document.getElementById("updateResponse");
+    if (novaFruta === "") {
+        resposta.innerText = "Por favor, forneça o novo nome da fruta!";
+        resposta.classList = "error";
+        return;
+    }
+
+    inputId.value = 0;
+    inputNovoNome.value = "";
+
+    let url = "http://127.0.0.1:5000/fruta/" + id.toFixed();
+    let request = {
+        method: "PUT",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({fruta:novaFruta})
+    };
+
+    fetch(url,request)
+    .then(response => response.json())
+    .then(data => {
+        if (data.erro)
+        {
+            resposta.innerText = "Erro: " + data.erro;
+            resposta.classList = "error";
+            return;
+        }
+        resposta.innerText = "Sucesso: " + data.mensagem;
+        resposta.classList = "success";
+    });
+}
+
+function deletarFruta()
+{
+    let id = Number(document.getElementById("deleteFruitId").value);
+
+    let url = "http://127.0.0.1:5000/fruta/"+id.toFixed();
+    request = { method: "DELETE" };
+
+    let resposta = document.getElementById("deleteResponse");
+    fetch(url,request)
+    .then(response => response.json())
+    .then(data => {
+        if (data.erro)
+        {
+            resposta.innerText = "Erro: " + data.erro;
+            resposta.classList = "error";
+            return;
+        }
+        resposta.innerText = "Sucesso: " + data.mensagem;
+        resposta.classList = "success";
+    });
+}

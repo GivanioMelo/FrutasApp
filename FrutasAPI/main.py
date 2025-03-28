@@ -46,3 +46,30 @@ def adicionarFruta():
         TextUtils.printGreen(f"Fruta {novaFruta} adicionada com sucesso!")
         return jsonify({"info":f"Fruta {novaFruta} adicionada com sucesso!"}), 201
 
+@api.route('/fruta/<int:id>', methods=['PUT'])
+def atualizarFruta(id:int):
+    data = request.get_json()
+    if id < 0: return jsonify({"erro": "ID inválido"}), 404
+    if id >= len(frutas): return jsonify({"erro": "Não existe fruta para o ID selecionado"}), 404
+    
+    if not ("fruta" in data): return jsonify({"erro": "Dados inválidos."}), 400
+    
+    novaFruta = data["fruta"].strip()
+
+    if novaFruta == "": return jsonify({"erro": "Nome da fruta inválido"}), 400
+    if novaFruta in frutas: return jsonify({"erro": "Já existe uma fruta com o nome fornecido"}), 400
+
+    frutaAntiga = frutas[id]
+    frutas[id] = novaFruta
+    TextUtils.printBrightMagenta(f"A fruta no id [{id}] foi atualizada de {frutaAntiga} para {novaFruta}")
+    return jsonify({"mensagem": f"A fruta no id [{id}] foi atualizada de {frutaAntiga} para {novaFruta}"}), 200
+
+@api.route('/fruta/<int:id>', methods=['DELETE'])
+def deletarFruta(id):
+    if id < 0: return jsonify({"erro": "ID inválido"}), 404
+    if id >= len(frutas): return jsonify({"erro": "Não existe fruta para o ID selecionado"}), 404
+    
+    fruta_removida = frutas.pop(id)
+    TextUtils.printRed(f"Fruta '{fruta_removida}' removida com sucesso!")
+    return jsonify({"mensagem": f"Fruta '{fruta_removida}' removida com sucesso!"}), 200
+    
